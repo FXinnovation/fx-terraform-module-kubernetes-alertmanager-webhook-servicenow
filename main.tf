@@ -3,7 +3,7 @@
 #####
 
 locals {
-  application_version = ""
+  application_version = "1.4.0"
   labels = {
     "app.kubernetes.io/name"       = "alertmanager-webhook-servicenow"
     "app.kubernetes.io/component"  = "exporter"
@@ -81,7 +81,7 @@ resource "kubernetes_deployment" "this" {
 
         container {
           name              = "alertmanager-webhook-servicenow"
-          image             = "fxinnovation/:${local.application_version}"
+          image             = "fxinnovation/awsn:${local.application_version}"
           image_pull_policy = var.image_pull_policy
 
           volume_mount {
@@ -204,10 +204,43 @@ resource "kubernetes_config_map" "this" {
   }
 
   data = {
-    "configuration.yaml" = local.configuration_yaml
+    "configuration.yaml" = var.configuration
   }
 }
 
 #####
 # Secret
 #####
+
+resource "kubernetes_secret" "this" {
+  count = var.enabled ? 1 : 0
+
+  metadata {
+    name      = var.secret_name
+    namespace = var.namespace
+    annotations = merge(
+      var.annotations,
+      var.secret_annotations
+    )
+    labels = merge(
+      {
+        "app.kubernetes.io/name"       = "azure-metrics-exporter"
+        "app.kubernetes.io/instance"   = var.secret_name
+        "app.kubernetes.io/version"    = "0.6.0"
+        "app.kubernetes.io/component"  = "exporter"
+        "app.kubernetes.io/part-of"    = "monitoring"
+        "app.kubernetes.io/managed-by" = "terraform"
+      },
+      var.labels,
+      var.secret_labels
+    )
+  }
+
+  data = {
+    instance_name = var.instance_name
+    user_name     = var.user_name
+    password      = var.password
+  }
+
+  type = "Opaque"
+}
