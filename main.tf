@@ -227,13 +227,9 @@ resource "kubernetes_secret" "this" {
     )
     labels = merge(
       {
-        "app.kubernetes.io/name"       = "azure-metrics-exporter"
-        "app.kubernetes.io/instance"   = var.secret_name
-        "app.kubernetes.io/version"    = "0.6.0"
-        "app.kubernetes.io/component"  = "exporter"
-        "app.kubernetes.io/part-of"    = "monitoring"
-        "app.kubernetes.io/managed-by" = "terraform"
+        "app.kubernetes.io/instance" = var.secret_name
       },
+      local.labels,
       var.labels,
       var.secret_labels
     )
