@@ -45,5 +45,5 @@ module "alertmanager-webhook-servicenow" {
   instance_name = "example"
   user_name     = "example"
   password      = "example"
-  configuration = ""
+  configuration = file("templates/configuration.yaml")
 }
