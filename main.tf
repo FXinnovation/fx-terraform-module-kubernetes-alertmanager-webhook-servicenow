@@ -61,6 +61,9 @@ resource "kubernetes_deployment" "this" {
     template {
       metadata {
         annotations = merge(
+          {
+            "configuration/hash" = sha256(local.configuration)
+          },
           var.annotations,
           var.deployment_annotations
         )
