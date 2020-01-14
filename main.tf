@@ -3,7 +3,7 @@
 #####
 
 locals {
-  application_version = "1.6.0"
+  application_version = "1.2.0"
   labels = {
     "app.kubernetes.io/name"       = "alertmanager-webhook-servicenow"
     "app.kubernetes.io/component"  = "exporter"
@@ -88,22 +88,22 @@ resource "kubernetes_deployment" "this" {
 
         container {
           name              = "alertmanager-webhook-servicenow"
-          image             = "fxinnovation/awsn:${local.application_version}"
+          image             = "fxinnovation/alertmanager-webhook-servicenow:${local.application_version}"
           image_pull_policy = var.image_pull_policy
 
           volume_mount {
             name       = "configuration-volume"
-            mount_path = "/data"
+            mount_path = "/config"
           }
 
           port {
             name           = "http"
-            container_port = 9876
+            container_port = 9877
             protocol       = "TCP"
           }
 
           env {
-            name = "AWSN_SERVICE_NOW_INSTANCE_NAME"
+            name = "SERVICENOW_INSTANCE_NAME"
             value_from {
               secret_key_ref {
                 name = element(concat(kubernetes_secret.this.*.metadata.0.name, list("")), 0)
@@ -113,7 +113,7 @@ resource "kubernetes_deployment" "this" {
           }
 
           env {
-            name = "AWSN_SERVICE_NOW_USER_NAME"
+            name = "SERVICENOW_USERNAME"
             value_from {
               secret_key_ref {
                 name = element(concat(kubernetes_secret.this.*.metadata.0.name, list("")), 0)
@@ -123,7 +123,7 @@ resource "kubernetes_deployment" "this" {
           }
 
           env {
-            name = "AWSN_SERVICE_NOW_PASSWORD"
+            name = "SERVICENOW_PASSWORD"
             value_from {
               secret_key_ref {
                 name = element(concat(kubernetes_secret.this.*.metadata.0.name, list("")), 0)
@@ -211,7 +211,7 @@ resource "kubernetes_config_map" "this" {
   }
 
   data = {
-    "configuration.yaml" = yamlencode(local.configuration)
+    "servicenow.yml" = yamlencode(local.configuration)
   }
 }
 
