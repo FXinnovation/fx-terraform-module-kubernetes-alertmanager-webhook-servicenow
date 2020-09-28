@@ -1,6 +1,13 @@
 # Default Example
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| azurerm | 1.28.0 |
+| random | ~> 2 |
+
 ## Providers
 
 | Name | Version |
@@ -12,7 +19,7 @@
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | client\_id | n/a | `string` | n/a | yes |
 | client\_secret | n/a | `string` | n/a | yes |
 | subscription\_id | n/a | `string` | n/a | yes |
