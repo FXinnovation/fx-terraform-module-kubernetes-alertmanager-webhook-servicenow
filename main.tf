@@ -3,7 +3,7 @@
 #####
 
 locals {
-  application_version = "1.4.0"
+  application_version = "1.5.0"
   labels = {
     "app.kubernetes.io/name"       = "alertmanager-webhook-servicenow"
     "app.kubernetes.io/component"  = "exporter"

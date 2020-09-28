@@ -3,6 +3,10 @@
 Terraform module to deploy alertmanager webhook servicenow on kubernetes.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -13,7 +17,7 @@ Terraform module to deploy alertmanager webhook servicenow on kubernetes.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | annotations | Additionnal annotations that will be merged on all resources. | `map` | `{}` | no |
 | config\_map\_annotations | Additionnal annotations that will be merged for the config map. | `map` | `{}` | no |
 | config\_map\_labels | Additionnal labels that will be merged for the config map. | `map` | `{}` | no |
