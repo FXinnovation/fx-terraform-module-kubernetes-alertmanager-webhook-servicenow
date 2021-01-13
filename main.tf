@@ -3,7 +3,7 @@
 #####
 
 locals {
-  application_version = var.version
+  application_version = var.application_version
   labels = {
     name       = "alertmanager-webhook-servicenow"
     component  = "exporter"

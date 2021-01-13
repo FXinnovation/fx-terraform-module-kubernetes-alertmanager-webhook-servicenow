@@ -113,7 +113,7 @@ variable "configuration" {
   type        = string
 }
 
-variable "version" {
+variable "application_version" {
   description = "Version of AWSN to deploy."
   default     = "1.6.0"
 }
