@@ -41,6 +41,7 @@ No requirements.
 | service\_labels | Additionnal labels that will be merged for the service. | `map` | `{}` | no |
 | service\_name | Name of the service that will be create | `string` | `"alertmanager-webhook-servicenow"` | no |
 | user\_name | Username to use when connecting to service-now. | `string` | n/a | yes |
+| version | Version of AWSN to deploy. | `string` | `"1.6.0"` | no |
 
 ## Outputs
 

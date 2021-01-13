@@ -112,3 +112,8 @@ variable "configuration" {
   description = "Configuration to use for alertmanager-webhook-servicenow (must be a yaml string)."
   type        = string
 }
+
+variable "version" {
+  description = "Version of AWSN to deploy."
+  default     = "1.6.0"
+}
