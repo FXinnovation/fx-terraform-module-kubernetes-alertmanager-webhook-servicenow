@@ -55,3 +55,33 @@ No requirements.
 | service\_name | Name of the service created by this module. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Contributing
+
+All contributions are welcome, but take notice of the following requirements:
+
+### pre-commit
+This repository uses a pre-commit configuration file. Our CI will make sure it runs before deploying anything. [More information](https://pre-commit.com/)
+
+#### Usage
+
+```
+pre-commit install
+pre-commit install -t commit-msg
+```
+
+### versioning
+This repository follows the [semantic versionning v2.0.0](https://semver.org/) conventions.
+
+### commit messages
+This repository follows the [AFCMF](https://dokuportal.fxinnovation.com/dokuwiki/doku.php?id=groups:git#afcmf) commit message standards.
+
+### terraform best-practices
+This repository follows the [FXinnovation Terraform standards](https://dokuportal.fxinnovation.com/dokuwiki/doku.php?id=groups:terraform).
+
+### changelog
+
+The changelog message is generated using the `git-extras` package using the following command:
+```
+git changelog -a -t <target-version> -p
+```
