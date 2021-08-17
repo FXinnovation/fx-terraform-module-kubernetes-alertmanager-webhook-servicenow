@@ -1,7 +1,7 @@
 1.6.0 / 2021-08-16
 ==================
 
-* fix: Replace old list function deprecated since terraform 0.12 by tolist
+* fix: Remove old list function deprecated since terraform 0.12
 
 1.5.0 / 2021-01-14
 ==================

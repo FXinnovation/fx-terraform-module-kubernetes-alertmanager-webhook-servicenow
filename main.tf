@@ -79,7 +79,7 @@ resource "kubernetes_deployment" "this" {
         volume {
           name = "configuration-volume"
           config_map {
-            name = element(concat(kubernetes_config_map.this.*.metadata.0.name, tolist([""])), 0)
+            name = element(concat(kubernetes_config_map.this.*.metadata.0.name, [""]), 0)
           }
         }
 
@@ -103,7 +103,7 @@ resource "kubernetes_deployment" "this" {
             name = "SERVICENOW_INSTANCE_NAME"
             value_from {
               secret_key_ref {
-                name = element(concat(kubernetes_secret.this.*.metadata.0.name, tolist([""])), 0)
+                name = element(concat(kubernetes_secret.this.*.metadata.0.name, [""]), 0)
                 key  = "instance_name"
               }
             }
@@ -113,7 +113,7 @@ resource "kubernetes_deployment" "this" {
             name = "SERVICENOW_USERNAME"
             value_from {
               secret_key_ref {
-                name = element(concat(kubernetes_secret.this.*.metadata.0.name, tolist([""])), 0)
+                name = element(concat(kubernetes_secret.this.*.metadata.0.name, [""]), 0)
                 key  = "user_name"
               }
             }
@@ -123,7 +123,7 @@ resource "kubernetes_deployment" "this" {
             name = "SERVICENOW_PASSWORD"
             value_from {
               secret_key_ref {
-                name = element(concat(kubernetes_secret.this.*.metadata.0.name, tolist([""])), 0)
+                name = element(concat(kubernetes_secret.this.*.metadata.0.name, [""]), 0)
                 key  = "password"
               }
             }
